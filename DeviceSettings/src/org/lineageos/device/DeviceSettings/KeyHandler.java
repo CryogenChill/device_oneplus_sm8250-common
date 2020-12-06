@@ -54,6 +54,8 @@ import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
 
 import org.lineageos.device.DeviceSettings.Constants;
+import org.lineageos.device.DeviceSettings.DeviceSettings;
+import org.lineageos.device.DeviceSettings.R;
 
 import vendor.oneplus.camera.CameraHIDL.V1_0.IOnePlusCameraProvider;
 
@@ -79,6 +81,8 @@ public class KeyHandler implements DeviceKeyHandler {
         sSupportedSliderRingModes.put(Constants.KEY_VALUE_VIBRATE, AudioManager.RINGER_MODE_VIBRATE);
         sSupportedSliderRingModes.put(Constants.KEY_VALUE_NORMAL, AudioManager.RINGER_MODE_NORMAL);
     }
+
+    private static Toast mToast;
 
     public static final String CLIENT_PACKAGE_NAME = "com.oneplus.camera";
     public static final String CLIENT_PACKAGE_PATH = "/data/misc/lineageos/client_package_name";
@@ -119,7 +123,9 @@ public class KeyHandler implements DeviceKeyHandler {
     public KeyHandler(Context context) {
         mContext = context;
         mResContext = getResContext(context);
-        mSysUiContext = ActivityThread.currentActivityThread().getSystemUiContext();
+        mSysUiContext = ActivityThread.currentActivityThread().getSystemUiContext();        
+        mHandler = new Handler(Looper.getMainLooper());
+        mDispOn = true;
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mNotificationManager
                 = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -172,6 +178,40 @@ public class KeyHandler implements DeviceKeyHandler {
         int position = scanCode == 601 ? 2 : scanCode == 602 ? 1 : 0;
         sendUpdateBroadcast(position);
         doHapticFeedback();
+
+        String toastText;
+        Resources res = mResContext.getResources();
+        int key = sSupportedSliderRingModes.keyAt(
+                sSupportedSliderRingModes.indexOfKey(keyCodeValue));
+        switch (key) {
+            case Constants.KEY_VALUE_TOTAL_SILENCE: // DND - no int'
+                toastText = res.getString(R.string.slider_toast_dnd);
+                break;
+            case Constants.KEY_VALUE_SILENT: // Ringer silent
+                toastText = res.getString(R.string.slider_toast_silent);
+                break;
+            case Constants.KEY_VALUE_PRIORTY_ONLY: // DND - priority
+                toastText = res.getString(R.string.slider_toast_priority);
+                break;
+            case Constants.KEY_VALUE_VIBRATE: // Ringer vibrate
+                toastText = res.getString(R.string.slider_toast_vibrate);
+                break;
+            default:
+            case Constants.KEY_VALUE_NORMAL: // Ringer normal DND off
+                toastText = res.getString(R.string.slider_toast_normal);
+                break;
+        }
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (mToast != null) mToast.cancel();
+                mToast = Toast.makeText(
+                        mSysUiContext, toastText, Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+        });
+
         return null;
     }
 
