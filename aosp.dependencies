@@ -6,10 +6,10 @@
     "remote"      : "lineage"
   },
   {
-    "repository"  : "kernel_oneplus_sm8250",
+    "repository"  : "crdroidandroid/android_kernel_oneplus_sm8250",
     "target_path" : "kernel/oneplus/sm8250",
-    "branch"      : "eleven",
-    "remote"      : "pixel-devices"
+    "branch"      : "11.0-neutrino",
+    "remote"      : "github"
   },
   {
     "repository"  : "Chandra-Chaganti/vendor_oneplus_sm8250-common",
