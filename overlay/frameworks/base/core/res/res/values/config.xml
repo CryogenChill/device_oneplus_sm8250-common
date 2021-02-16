@@ -343,6 +343,9 @@
         <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
     </integer-array>
 
+<!-- Whether device has warp charging support -->
+<bool name="config_hasWarpCharger">true</bool>
+
     <!-- Flag indicating which package name can access the persistent data partition -->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 </resources>
