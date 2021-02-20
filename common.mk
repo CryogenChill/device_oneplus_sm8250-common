@@ -191,14 +191,10 @@ PRODUCT_PACKAGES += \
     ftm_power_config.sh \
     init.class_main.sh \
     init.crda.sh \
-    init.cust.rc \
     init.mdm.sh \
-    init.oem.debug.rc \
-    init.oem.minidump.sdx55m.rc \
     init.oem.rc \
     init.color.rc \
     init.oem.sec.rc \
-    init.oem_ftm.rc \
     init.oplus_chg.sh \
     init.qcom.class_core.sh \
     init.qcom.coex.sh \
@@ -218,9 +214,7 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     init.smartcharging.rc \
     init.target.rc \
-    ueventd.qcom.rc \
-    vendor.oem_ftm.rc \
-    vendor.oem_ftm_svc_disable.rc
+    ueventd.qcom.rc
 
 # Component overrides
 PRODUCT_COPY_FILES += \
