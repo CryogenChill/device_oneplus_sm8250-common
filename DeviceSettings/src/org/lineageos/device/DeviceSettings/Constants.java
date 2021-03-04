@@ -42,19 +42,9 @@ public class Constants {
     public static final String NOTIF_SLIDER_BOTTOM_PREF = "pref_keycode_bottom_position";
 
     // Default values
-    public static final int KEY_VALUE_TOTAL_SILENCE = 0;
-    public static final int KEY_VALUE_SILENT = 1;
-    public static final int KEY_VALUE_PRIORTY_ONLY = 2;
-    public static final int KEY_VALUE_VIBRATE = 3;
-    public static final int KEY_VALUE_NORMAL = 4;
-
-    // TriStateUI Modes
-    public static final int MODE_TOTAL_SILENCE = 600;
-    public static final int MODE_ALARMS_ONLY = 601;
-    public static final int MODE_PRIORITY_ONLY = 602;
-    public static final int MODE_VIBRATE = 604;
-    public static final int MODE_RING = 605;
-    public static final int MODE_SILENT = 620;
+    public static final int KEY_VALUE_SILENT = 0;
+    public static final int KEY_VALUE_VIBRATE = 1;
+    public static final int KEY_VALUE_NORMAL = 2;
 
     public static final Map<String, String> sStringKeyPreferenceMap = new HashMap<>();
     public static final Map<Integer, String> sKeyMap = new HashMap<>();
@@ -63,7 +53,6 @@ public class Constants {
     public static final String ACTION_UPDATE_SLIDER_POSITION
             = "org.lineageos.device.DeviceSettings.UPDATE_SLIDER_POSITION";
     public static final String EXTRA_SLIDER_POSITION = "position";
-    public static final String EXTRA_SLIDER_POSITION_VALUE = "position_value";
 
     static {
         sStringKeyPreferenceMap.put(NOTIF_SLIDER_TOP_KEY, NOTIF_SLIDER_TOP_PREF);
