@@ -36,6 +36,5 @@
     <!-- Max visible system icons -->
     <integer name="config_maxVisibleStatusIconContainer">9</integer>
     <!-- Color of the FOD view -->
-    <color name="config_fodColor">#ffffe6</color>
     <color name="config_fodColorBackground">#00000000</color>
 </resources>
